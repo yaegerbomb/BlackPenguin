@@ -1,4 +1,4 @@
-# BlackPenguin
+# BlackPenguin V .8
 
 This is a windows c++ implentation of taking a cropped screenshot and uploading it to Imgur.
 
@@ -31,6 +31,10 @@ The link will be copied to your clipboard after upload is complete.
  * http://stackoverflow.com/questions/29678661/send-image-in-http-post-via-json-object-using-cpprest
 * Imgur API
  * https://api.imgur.com/
+* The authors of CPPRest
+ * https://casablanca.codeplex.com/wikipage?title=Http%20Client%20Tutorial
+* The authors of SDL2
+ * https://www.libsdl.org/download-2.0.php
 
 ## License
 
