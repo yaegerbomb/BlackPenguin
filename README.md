@@ -1,6 +1,6 @@
 # BlackPenguin
 
-This is a c++ implentation of taking a cropped screenshot and uploading it to Imgur.
+This is a windows c++ implentation of taking a cropped screenshot and uploading it to Imgur.
 
 ## Installation
 
@@ -12,7 +12,7 @@ Compile using C++ compiler and run
 2. Drag rectangle around the portion of your screen you want to upload to Imgur
 3. Select upload to Imgur
 
-The link will be copied to your clipboard.
+The link will be copied to your clipboard after upload is complete.
 
 ## Contributing
 
@@ -25,9 +25,12 @@ The link will be copied to your clipboard.
 
 ## Credits
 
-Lazy Foo SDL2 tutorials.
-StackOverflow user: Viktor Latypov (http://stackoverflow.com/questions/29678661/send-image-in-http-post-via-json-object-using-cpprest)
-Imgur API
+* Lazy Foo SDL2 tutorials.
+ * http://lazyfoo.net/
+* StackOverflow user: Viktor Latypov  
+ * http://stackoverflow.com/questions/29678661/send-image-in-http-post-via-json-object-using-cpprest
+* Imgur API
+ * https://api.imgur.com/
 
 ## License
 
