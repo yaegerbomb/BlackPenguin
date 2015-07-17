@@ -15,8 +15,8 @@ using namespace web::http::client;          // HTTP client features
 using namespace concurrency::streams;       // Asynchronous streams
 using namespace web::json;
 
-string ClientID = "***REMOVED***";
-string ClientSecret = "***REMOVED***";
+string ClientID = "**REMOVED**";
+string ClientSecret = "**REMOVED**";
 string BaseURL = "https://api.imgur.com/3/";
 string savedImagePath = "screenshot.bmp";
 
