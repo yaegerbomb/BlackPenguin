@@ -9,13 +9,13 @@
 #include <vector>
 
 // Declare display mode structure to be filled in.
-SDL_DisplayMode current;
 SDL_Window *windowCropper;
 SDL_Renderer *rendererCropper;
 SDL_Event event;
 SDL_SysWMinfo SysInfo;
+SDL_Rect cropCoords;
 HWND hWnd;
-bool quit = 0;
+bool cropWindowRunning = false;
 bool mousedown = false;
 
 //track crop rectangle drawn by user
@@ -80,6 +80,7 @@ void initCropWindow(){
 	//// Select the color for drawing. It is set to red here.
 	SDL_SetRenderDrawColor(rendererCropper, 255, 255, 255, 0);
 	
+	cropWindowRunning = true;
 	initCropEvents();
 }
 
@@ -88,8 +89,8 @@ void initCropEvents(){
 	/* more events on the event queue, our while loop will exit when */
 	/* that occurs.                                                 */
 
-	while (!quit){
-		while (SDL_PollEvent(&event)){
+	while (cropWindowRunning){
+		while (SDL_PollEvent(&event) && cropWindowRunning){
 			/* We are only worried about SDL_KEYDOWN and SDL_KEYUP events */
 			switch (event.type){
 			case SDL_KEYDOWN:
@@ -99,11 +100,9 @@ void initCropEvents(){
 			case SDL_KEYUP:
 				printf("Key release detected\n");
 				break;
-
-				/* SDL_QUIT event (windowCropper close) */
 			case SDL_QUIT:
 				cleanupCropWindow();
-				quit = true;
+				cropWindowRunning = false;
 				break;
 
 			case SDL_MOUSEBUTTONDOWN:
@@ -116,7 +115,9 @@ void initCropEvents(){
 				printf("mouse button released \n");
 				printf("end coords: (%d, %d) \n", endX, endY);
 				mousedown = false;
-				saveScreenshotBMP(setCropRectCoords(startX, startY, endX, endY));
+				cropCoords = setCropRectCoords(startX, startY, endX, endY);
+				saveScreenshotBMP(cropCoords);
+				cropWindowRunning = false;
 				break;
 			case SDL_MOUSEMOTION:
 				if (mousedown){
@@ -158,6 +159,7 @@ void initCropEvents(){
 }
 
 void saveScreenshotBMP(SDL_Rect cropArea) {
+	cropWindowRunning = true;
 	cleanupCropWindow();
 	//SDL_HideWindow(windowCropper);
 	int x1, y1, x2, y2, w, h;
@@ -179,8 +181,6 @@ void saveScreenshotBMP(SDL_Rect cropArea) {
 	BOOL    bRet = BitBlt(hDC, 0, 0, cropArea.w, cropArea.h, hScreen, cropArea.x, cropArea.y, SRCCOPY);
 
 	CreateBMPFile(hWnd, "screenshot.bmp", CreateBitmapInfoStruct(hWnd, hBitmap), hBitmap, hScreen);
-
-	initWindowUploader(cropArea.w, cropArea.h);
 
 	// clean up
 	SelectObject(hDC, old_obj);

@@ -13,6 +13,8 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{73617D53-1A80-4FE1-A4EF-64601684F915}</ProjectGuid>
     <RootNamespace>BlackPenguin</RootNamespace>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -50,7 +52,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Users\DYaeger\Documents\Visual Studio 2013\Projects\BlackPenguin\packages\sdl2.2.0.3\build\native\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\DYaeger\Documents\Visual Studio 2013\Projects\BlackPenguin\packages;C:\Users\DYaeger\Documents\Visual Studio 2013\Projects\BlackPenguin\packages\sdl2.redist.2.0.3;C:\Users\DYaeger\Documents\Visual Studio 2013\Projects\BlackPenguin\packages\cpprestsdk.v120.windesktop.msvcstl.dyn.rt-dyn.2.5.0;C:\Users\DYaeger\Documents\Visual Studio 2013\Projects\BlackPenguin\packages\sdl2.2.0.3\build\native\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -76,6 +78,7 @@
   <ItemGroup>
     <ClCompile Include="app.cpp" />
     <ClCompile Include="Base64.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="ImgurAPI.cpp" />
     <ClCompile Include="WindowCropper.cpp" />
     <ClCompile Include="WindowFunctions.cpp" />
@@ -88,6 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Base64.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="ImgurAPI.h" />
     <ClInclude Include="WindowCropper.h" />
     <ClInclude Include="WindowFunctions.h" />
@@ -98,6 +102,7 @@
     <Import Project="..\packages\cpprestsdk.v120.windesktop.msvcstl.dyn.rt-dyn.2.5.0\build\native\cpprestsdk.v120.windesktop.msvcstl.dyn.rt-dyn.targets" Condition="Exists('..\packages\cpprestsdk.v120.windesktop.msvcstl.dyn.rt-dyn.2.5.0\build\native\cpprestsdk.v120.windesktop.msvcstl.dyn.rt-dyn.targets')" />
     <Import Project="..\packages\sdl2.redist.2.0.3\build\native\sdl2.redist.targets" Condition="Exists('..\packages\sdl2.redist.2.0.3\build\native\sdl2.redist.targets')" />
     <Import Project="..\packages\sdl2.2.0.3\build\native\sdl2.targets" Condition="Exists('..\packages\sdl2.2.0.3\build\native\sdl2.targets')" />
+    <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -106,5 +111,6 @@
     <Error Condition="!Exists('..\packages\cpprestsdk.v120.windesktop.msvcstl.dyn.rt-dyn.2.5.0\build\native\cpprestsdk.v120.windesktop.msvcstl.dyn.rt-dyn.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cpprestsdk.v120.windesktop.msvcstl.dyn.rt-dyn.2.5.0\build\native\cpprestsdk.v120.windesktop.msvcstl.dyn.rt-dyn.targets'))" />
     <Error Condition="!Exists('..\packages\sdl2.redist.2.0.3\build\native\sdl2.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sdl2.redist.2.0.3\build\native\sdl2.redist.targets'))" />
     <Error Condition="!Exists('..\packages\sdl2.2.0.3\build\native\sdl2.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sdl2.2.0.3\build\native\sdl2.targets'))" />
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
   </Target>
 </Project>

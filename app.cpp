@@ -5,6 +5,7 @@
 #include "ImgurAPI.h"
 #include "WindowFunctions.h"
 #include "WindowCropper.h"
+#include "WindowUploader.h"
 #include <vector>
 
 void renderCroppedImage(int width, int height){
@@ -18,11 +19,10 @@ int main(int argc, char* argv[])
 
 	
 	initCropWindow();
-	cleanupCropWindow();
+	initWindowUploader(cropCoords.w, cropCoords.h);
+	SDL_Quit();
+
 	return 0;
 
-	//code to upload to imgur
-	/*string linkUrl; 
-	UploadImgurImage(&linkUrl);
-	AddStringToClipboard(linkUrl);*/
+
 }

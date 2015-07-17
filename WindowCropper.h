@@ -3,6 +3,7 @@
 
 #include <SDL.h>
 
+extern SDL_Rect cropCoords;
 
 SDL_Rect setCropRectCoords(int &startX, int &startY, int &endX, int &endY);
 

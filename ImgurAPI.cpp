@@ -5,6 +5,7 @@
 #include "Base64.h"
 #include <Windows.h>
 #include "ImgurAPI.h"
+#include "WindowFunctions.h"
 
 using namespace std;
 using namespace utility;                    // Common utilities like string conversions
@@ -17,13 +18,13 @@ using namespace web::json;
 string ClientID = "***REMOVED***";
 string ClientSecret = "***REMOVED***";
 string BaseURL = "https://api.imgur.com/3/";
-string savedImagePath = "C:\\Users\\DYaeger\\Desktop\\blackpenguinsplash.png";
+string savedImagePath = "screenshot.bmp";
+
+
 
 void UploadImgurImage(string *linkURL){
 	//open file to upload
-	ifstream imageToConvert;
-
-	imageToConvert.open(savedImagePath, ios::binary);
+	std::ifstream  imageToConvert(ExePath() + '\\' + savedImagePath, std::ios::in | std::ios::binary);
 
 
 	//declare our ostrm to hold our data

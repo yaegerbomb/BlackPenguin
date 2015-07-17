@@ -1,5 +1,16 @@
 #include <iostream>
 #include <Windows.h>
+#include <cstring>
+#include <string>
+using namespace std;
+
+
+string ExePath() {
+	char buffer[MAX_PATH];
+	GetModuleFileName(NULL, buffer, MAX_PATH);
+	string::size_type pos = string(buffer).find_last_of("\\/");
+	return string(buffer).substr(0, pos);
+}
 
 //save text to clipboard
 void AddStringToClipboard(const std::string &s){
@@ -109,7 +120,8 @@ void CreateBMPFile(HWND hwnd, LPTSTR pszFile, PBITMAPINFO pbi, HBITMAP hBMP, HDC
 	}
 
 	// Create the .BMP file.  
-	hf = CreateFile(pszFile,GENERIC_READ | GENERIC_WRITE,(DWORD)0,NULL,	CREATE_ALWAYS,	FILE_ATTRIBUTE_NORMAL,(HANDLE)NULL);
+	std::string fileName = ExePath() + '\\' + pszFile;
+	hf = CreateFile(fileName.c_str(), GENERIC_READ | GENERIC_WRITE, (DWORD)0, NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, (HANDLE)NULL);
 
 	if (hf == INVALID_HANDLE_VALUE){}
 		//errhandler("CreateFile", hwnd);

@@ -1,6 +1,11 @@
 #ifndef WINDOWFUNCTIONS_H
 #define WINDOWFUNCTIONS_H
 
+#include "WindowFunctions.h"
+#include <SDL_syswm.h>
+#include <string>
+
+string ExePath();
 
 void AddStringToClipboard(const std::string &s);
 
